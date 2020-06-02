@@ -21,7 +21,7 @@ export default function PadraoCreate() {
   const yup = require('yup');
 
   const navigation = useNavigation();
-  const doubleRegex = /^([-]){0,1}\d+(\.\d*){0,1}$/;
+  const doubleRegex = /^([-]){0,1}\d+(\.\d+){0,1}$/;
 
   function submitHandler(values) {
     values.temperaturaMin = Number(
@@ -165,7 +165,7 @@ export default function PadraoCreate() {
       })}
       onSubmit={(values) => submitHandler(values)}
     >
-      {({ handleChange, handleSubmit, values, errors }) => (
+      {({ handleChange, handleSubmit, setFieldValue, values, errors }) => (
         <SafeAreaView>
           <ScrollView>
             <Container>
@@ -190,7 +190,7 @@ export default function PadraoCreate() {
                   setMax="temperaturaMax"
                   errorsInputMin={errors.temperaturaMin}
                   errorsInputMax={errors.temperaturaMax}
-                  handleChange={handleChange}
+                  setFieldValue={setFieldValue}
                 />
                 <FormInputMinMax
                   name="Umidade"
@@ -200,7 +200,7 @@ export default function PadraoCreate() {
                   setMax="umidadeMax"
                   errorsInputMin={errors.umidadeMin}
                   errorsInputMax={errors.umidadeMax}
-                  handleChange={handleChange}
+                  setFieldValue={setFieldValue}
                 />
                 <FormInputMinMax
                   name="Velocidade do Ar"
@@ -210,7 +210,7 @@ export default function PadraoCreate() {
                   setMax="velocidadeArMax"
                   errorsInputMin={errors.velocidadeArMin}
                   errorsInputMax={errors.velocidadeArMax}
-                  handleChange={handleChange}
+                  setFieldValue={setFieldValue}
                 />
                 <FormInputMinMax
                   name="Dióxido de Carbono"
@@ -220,7 +220,7 @@ export default function PadraoCreate() {
                   setMax="dioxidoCarbMax"
                   errorsInputMin={errors.dioxidoCarbMin}
                   errorsInputMax={errors.dioxidoCarbMax}
-                  handleChange={handleChange}
+                  setFieldValue={setFieldValue}
                 />
                 <FormInputMinMax
                   name="Amônia"
@@ -230,7 +230,7 @@ export default function PadraoCreate() {
                   setMax="amoniaMax"
                   errorsInputMin={errors.amoniaMin}
                   errorsInputMax={errors.amoniaMax}
-                  handleChange={handleChange}
+                  setFieldValue={setFieldValue}
                 />
                 <FormInputMinMax
                   name="Sulfeto de Hidrogênio"
@@ -240,7 +240,7 @@ export default function PadraoCreate() {
                   setMax="sulfetoHidroMax"
                   errorsInputMin={errors.sulfetoHidroMin}
                   errorsInputMax={errors.sulfetoHidroMax}
-                  handleChange={handleChange}
+                  setFieldValue={setFieldValue}
                 />
                 <Button onPress={handleSubmit}>
                   <ButtonText>Adicionar</ButtonText>

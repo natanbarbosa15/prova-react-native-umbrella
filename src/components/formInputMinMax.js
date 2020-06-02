@@ -8,6 +8,19 @@ import {
   ErrorText,
 } from './styles';
 
+function handleDigits(id, value, setFieldValue) {
+  var temp = value.toString();
+  // Replace comma with dot
+  temp = temp.replace(/,/g, '.').replace(/ /g, '');
+  // If has more than 2 decimal places round value to 2 decimal places
+  if (temp.includes('.')) {
+    if (temp.split('.')[1].length > 2) {
+      temp = temp.slice(0, -1);
+    }
+  }
+  setFieldValue(id, temp);
+}
+
 const FormInputMinMax = ({
   name,
   valueMin,
@@ -16,7 +29,7 @@ const FormInputMinMax = ({
   setMax,
   errorsInputMin,
   errorsInputMax,
-  handleChange,
+  setFieldValue,
 }) => (
   <InfoContainer>
     <Title>{name}</Title>
@@ -26,8 +39,10 @@ const FormInputMinMax = ({
       placeholder="0"
       maxLength={16}
       error={errorsInputMin}
-      value={valueMin.toString().replace(/,/g, '.').replace(/ /g, '')}
-      onChangeText={handleChange(setMin)}
+      value={valueMin}
+      onChangeText={(value) => {
+        handleDigits(setMin, value, setFieldValue);
+      }}
     />
     {errorsInputMin && <ErrorText>{errorsInputMin}</ErrorText>}
     <Description>Digite abaixo o valor máximo:</Description>
@@ -36,8 +51,10 @@ const FormInputMinMax = ({
       placeholder="0"
       maxLength={16}
       error={errorsInputMax}
-      value={valueMax.toString().replace(/,/g, '.').replace(/ /g, '')}
-      onChangeText={handleChange(setMax)}
+      value={valueMax}
+      onChangeText={(value) => {
+        handleDigits(setMax, value, setFieldValue);
+      }}
     />
     {errorsInputMax && <ErrorText>{errorsInputMax}</ErrorText>}
   </InfoContainer>
