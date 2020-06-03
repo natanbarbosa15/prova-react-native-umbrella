@@ -1,7 +1,5 @@
 import React from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
 import { updatePadrao } from '~/database/crud';
 
@@ -18,12 +16,9 @@ import {
   ButtonText,
 } from '~/components/styles';
 
-export default function PadraoUpdate() {
-  const route = useRoute();
+export default function PadraoUpdate({ route, navigation }) {
   const animal = route.params.animal;
   const yup = require('yup');
-
-  const navigation = useNavigation();
   const doubleRegex = /^([-]){0,1}\d+(\.\d*){0,1}$/;
 
   function submitHandler(values) {

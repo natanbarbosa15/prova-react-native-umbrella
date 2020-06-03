@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -10,11 +9,16 @@ import {
   ButtonText,
 } from '~/components/styles';
 
-export default function Main() {
-  const navigation = useNavigation();
-
+export default function Main({ navigation }) {
   return (
     <Container>
+      <InfoContainer>
+        <Title>Cooperativas</Title>
+        <Description>Acesse as cooperativas</Description>
+        <Button onPress={() => navigation.navigate('CooperativaList')}>
+          <ButtonText>Acessar</ButtonText>
+        </Button>
+      </InfoContainer>
       <InfoContainer>
         <Title>Padrões de Monitoramento</Title>
         <Description>

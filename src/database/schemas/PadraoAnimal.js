@@ -1,4 +1,4 @@
-const PadraoAnimalSchema = {
+const PadraoAnimal = {
   name: 'padrao_animal',
   primaryKey: 'id',
   properties: {
@@ -19,4 +19,4 @@ const PadraoAnimalSchema = {
   },
 };
 
-export default PadraoAnimalSchema;
+export default PadraoAnimal;

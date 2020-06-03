@@ -40,8 +40,8 @@ const FormInputMinMax = ({
       maxLength={16}
       error={errorsInputMin}
       value={valueMin}
-      onChangeText={(value) => {
-        handleDigits(setMin, value, setFieldValue);
+      onChangeText={(input) => {
+        handleDigits(setMin, input, setFieldValue);
       }}
     />
     {errorsInputMin && <ErrorText>{errorsInputMin}</ErrorText>}
@@ -52,8 +52,8 @@ const FormInputMinMax = ({
       maxLength={16}
       error={errorsInputMax}
       value={valueMax}
-      onChangeText={(value) => {
-        handleDigits(setMax, value, setFieldValue);
+      onChangeText={(input) => {
+        handleDigits(setMax, input, setFieldValue);
       }}
     />
     {errorsInputMax && <ErrorText>{errorsInputMax}</ErrorText>}

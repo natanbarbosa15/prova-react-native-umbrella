@@ -1,6 +1,5 @@
 import React from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
 import { createPadrao } from '~/database/crud';
 
@@ -17,10 +16,8 @@ import {
   List,
 } from '~/components/styles';
 
-export default function PadraoCreate() {
+export default function PadraoCreate({ navigation }) {
   const yup = require('yup');
-
-  const navigation = useNavigation();
   const doubleRegex = /^([-]){0,1}\d+(\.\d+){0,1}$/;
 
   function submitHandler(values) {
@@ -52,8 +49,6 @@ export default function PadraoCreate() {
     values.sulfetoHidroMax = Number(
       parseFloat(values.sulfetoHidroMax).toFixed(2)
     );
-
-    console.tron.log(values);
 
     createPadrao(values);
     navigation.navigate('PadraoList');

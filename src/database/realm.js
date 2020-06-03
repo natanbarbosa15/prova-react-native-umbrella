@@ -1,10 +1,13 @@
 import Realm from 'realm';
 
-import PadraoAnimalSchema from '~/database/schemas/PadraoAnimalSchema';
+import Animal from '~/database/schemas/Animal';
+import PadraoAnimal from '~/database/schemas/PadraoAnimal';
+import Cooperativa from '~/database/schemas/Cooperativa';
 
 export default async function getRealm() {
   const realm = await Realm.open({
-    schema: [PadraoAnimalSchema],
+    schemaVersion: 1,
+    schema: [Animal, PadraoAnimal, Cooperativa],
   });
   return realm;
 }

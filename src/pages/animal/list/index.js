@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList } from 'react-native';
-import { getAllPadrao } from '~/database/crud';
+import { getAllAnimais } from '~/database/crud';
 
 import {
   InfoContainer,
@@ -12,14 +12,14 @@ import {
   ButtonText,
 } from '~/components/styles';
 
-export default function PadraoList({ navigation }) {
-  const [padroes, setPadroes] = useState([]);
+export default function AnimalList({ route, navigation }) {
+  const cooperativaId = route.params.cooperativaId;
+  const [animais, setAnimais] = useState([]);
 
   useEffect(() => {
     var collection = [];
     function getData() {
-      collection = getAllPadrao();
-      setPadroes(
+      setAnimais(
         JSON.parse(
           JSON.stringify(
             Array.prototype.slice.call(collection, 0, collection.length)
@@ -28,7 +28,7 @@ export default function PadraoList({ navigation }) {
       );
     }
     function initRealmListener() {
-      collection = getAllPadrao();
+      collection = getAllAnimais(cooperativaId);
       collection.addListener(getData);
     }
     function RemoveRealmListener() {
@@ -39,23 +39,25 @@ export default function PadraoList({ navigation }) {
     return () => {
       RemoveRealmListener();
     };
-  }, []);
+  }, [cooperativaId]);
 
   return (
     <Container>
       <List>
         <FlatList
-          data={padroes}
+          data={animais}
           keyExtractor={(item) => String(item.id)}
-          extraData={padroes}
+          extraData={animais}
           renderItem={({ item: animal }) => (
             <InfoContainer>
               <Title>{animal.nome}</Title>
               <Description>
-                Acesse os padrões de monitoramento para {animal.nome}
+                Acesse os dados do animal: {animal.nome}
               </Description>
               <Button
-                onPress={() => navigation.navigate('PadraoRead', { animal })}
+                onPress={() =>
+                  navigation.navigate('AnimalRead', { animal, cooperativaId })
+                }
               >
                 <ButtonText>Acessar</ButtonText>
               </Button>

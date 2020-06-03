@@ -25,6 +25,11 @@ export const Title = styled.Text`
   color: #333;
 `;
 
+export const ErrorTitle = styled.Text`
+  font-size: 18px;
+  color: red;
+`;
+
 export const Description = styled.Text`
   font-size: 16px;
   color: #999;

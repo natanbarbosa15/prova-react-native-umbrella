@@ -1,6 +1,5 @@
 import React from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
 
 import {
   Container,
@@ -10,8 +9,7 @@ import {
   List,
 } from '~/components/styles';
 
-export default function PadraoRead() {
-  const route = useRoute();
+export default function PadraoRead({ route }) {
   const animal = route.params.animal;
 
   return (
